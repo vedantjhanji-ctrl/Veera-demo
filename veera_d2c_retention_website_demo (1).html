@@ -1,0 +1,550 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=DM+Sans:wght@300;400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B3E;--gold:#C9920A;--gold-light:#E8B84B;--terra:#8B3A1A;--cream:#F5EFE0;--cream2:#EDE5D0;
+  --green:#2D5016;--green-light:#3D6B1E;--white:#FFFDF8;--text:#1a1208;--muted:#6b5a3e;
+}
+.vw{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);max-width:680px;overflow:hidden}
+.vh{display:none}.vh.active{display:block}
+
+.nav{background:var(--navy);padding:10px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;font-weight:700;letter-spacing:2px}
+.logo span{color:#fff;font-size:10px;display:block;letter-spacing:4px;font-family:'DM Sans',sans-serif;font-weight:300;margin-top:-2px}
+.nav-links{display:flex;gap:16px}
+.nav-links a{color:rgba(255,255,255,0.75);font-size:11px;letter-spacing:1.5px;cursor:pointer;text-transform:uppercase;text-decoration:none}
+.nav-links a:hover{color:var(--gold)}
+.nav-cart{background:var(--gold);color:var(--navy);font-size:11px;font-weight:500;padding:6px 14px;border-radius:2px;cursor:pointer;letter-spacing:1px}
+
+.hero{background:var(--navy);padding:40px 24px 32px;text-align:center;position:relative}
+.hero-tag{background:var(--gold);color:var(--navy);font-size:9px;letter-spacing:3px;font-weight:500;padding:4px 12px;display:inline-block;margin-bottom:14px;text-transform:uppercase}
+.hero h1{font-family:'Playfair Display',serif;color:#fff;font-size:28px;line-height:1.25;margin-bottom:8px}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{color:rgba(255,255,255,0.65);font-size:13px;line-height:1.6;max-width:400px;margin:0 auto 20px}
+.hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:var(--navy);font-size:12px;font-weight:500;padding:10px 20px;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase}
+.btn-ghost{background:transparent;color:#fff;font-size:12px;font-weight:400;padding:10px 20px;border:1px solid rgba(255,255,255,0.35);cursor:pointer;letter-spacing:1px;text-transform:uppercase}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+.trust-bar{background:var(--cream2);display:flex;justify-content:space-around;padding:10px 16px;border-bottom:1px solid #d4c9ae}
+.trust-item{font-size:10px;color:var(--muted);letter-spacing:0.5px;text-align:center;font-weight:500}
+.trust-item strong{display:block;color:var(--navy);font-size:13px;font-family:'Playfair Display',serif}
+
+.section-label{font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.section-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--navy);margin-bottom:4px}
+.section-sub{font-size:12px;color:var(--muted);line-height:1.6}
+
+.products-section{padding:28px 20px}
+.products-header{text-align:center;margin-bottom:20px}
+.filter-bar{display:flex;gap:6px;justify-content:center;margin-bottom:20px;flex-wrap:wrap}
+.filter-btn{font-size:10px;letter-spacing:1px;color:var(--muted);padding:5px 12px;border:1px solid #d4c9ae;background:transparent;cursor:pointer;text-transform:uppercase;font-weight:500}
+.filter-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.product-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.product-card{background:var(--cream);border:1px solid #d4c9ae;cursor:pointer;transition:border-color 0.2s}
+.product-card:hover{border-color:var(--gold)}
+.product-img{height:100px;display:flex;align-items:center;justify-content:center;position:relative}
+.product-img.ragi{background:#7B2D16}
+.product-img.millet{background:#1D4A2A}
+.product-img.seed{background:#14204A}
+.product-img .pack-name{font-family:'Playfair Display',serif;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:1.2;padding:8px}
+.product-img .pack-badge{position:absolute;top:6px;right:6px;background:var(--gold);color:var(--navy);font-size:8px;font-weight:500;padding:2px 6px;letter-spacing:0.5px}
+.product-info{padding:10px}
+.product-name{font-size:12px;font-weight:500;color:var(--navy);margin-bottom:2px}
+.product-weight{font-size:10px;color:var(--muted)}
+.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:8px}
+.product-price{font-family:'Playfair Display',serif;font-size:15px;color:var(--terra);font-weight:700}
+.add-btn{background:var(--navy);color:#fff;font-size:9px;padding:5px 10px;border:none;cursor:pointer;letter-spacing:1px;text-transform:uppercase}
+.add-btn:hover{background:var(--terra)}
+
+.sub-banner{background:var(--navy);padding:24px 20px;margin:0 0 0}
+.sub-banner-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.sub-icon{width:44px;height:44px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sub-text h3{font-family:'Playfair Display',serif;color:#fff;font-size:15px;margin-bottom:2px}
+.sub-text p{color:rgba(255,255,255,0.6);font-size:11px}
+.sub-cta{margin-left:auto}
+
+.loyalty-section{background:var(--cream);padding:24px 20px}
+.tier-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:16px}
+.tier-card{background:var(--white);border:1px solid #d4c9ae;padding:14px 10px;text-align:center}
+.tier-card.active-tier{border:2px solid var(--gold);background:var(--cream2)}
+.tier-name{font-family:'Playfair Display',serif;font-size:14px;color:var(--navy);margin-bottom:4px}
+.tier-spend{font-size:10px;color:var(--muted);margin-bottom:8px}
+.tier-perks{font-size:10px;color:var(--text);line-height:1.7;text-align:left}
+.tier-badge{display:inline-block;font-size:9px;letter-spacing:1px;font-weight:500;padding:3px 8px;margin-bottom:8px;text-transform:uppercase}
+.badge-bronze{background:#c87533;color:#fff}
+.badge-silver{background:#9E9E9E;color:#fff}
+.badge-gold{background:var(--gold);color:var(--navy)}
+
+.replen-section{padding:24px 20px}
+.replen-card{background:var(--cream);border:1px solid #d4c9ae;padding:16px;margin-top:12px}
+.replen-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.replen-avatar{width:36px;height:36px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:13px;font-family:'Playfair Display',serif;font-weight:700;flex-shrink:0}
+.replen-from{font-size:12px;font-weight:500;color:var(--navy)}
+.replen-time{font-size:10px;color:var(--muted)}
+.replen-msg{background:#fff;border-left:3px solid var(--gold);padding:12px;font-size:12px;line-height:1.65;color:var(--text)}
+.replen-msg strong{color:var(--terra)}
+.replen-cta-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.replen-btn{font-size:10px;letter-spacing:1px;font-weight:500;padding:8px 16px;cursor:pointer;text-transform:uppercase;border:none}
+.replen-btn-primary{background:var(--terra);color:#fff}
+.replen-btn-secondary{background:transparent;color:var(--navy);border:1px solid #d4c9ae}
+
+.whatsapp-bubble{background:#075E54;color:#fff;border-radius:12px;padding:10px 14px;margin-top:12px;font-size:11px;line-height:1.6;position:relative}
+.whatsapp-bubble::before{content:'WhatsApp notification';font-size:9px;letter-spacing:1px;color:rgba(255,255,255,0.6);display:block;margin-bottom:4px;text-transform:uppercase}
+
+.qr-section{background:var(--navy);padding:24px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.qr-box{width:70px;height:70px;background:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-inner{width:54px;height:54px;background:repeating-linear-gradient(0deg,#0D1B3E 0px,#0D1B3E 4px,#fff 4px,#fff 8px),repeating-linear-gradient(90deg,#0D1B3E 0px,#0D1B3E 4px,#fff 4px,#fff 8px);background-blend-mode:multiply;border:2px solid #0D1B3E}
+.qr-text h4{font-family:'Playfair Display',serif;color:#fff;font-size:14px;margin-bottom:4px}
+.qr-text p{font-size:11px;color:rgba(255,255,255,0.6);line-height:1.6}
+.qr-text .badge-chain{display:inline-block;background:var(--gold);color:var(--navy);font-size:9px;font-weight:500;padding:3px 8px;margin-top:6px;letter-spacing:0.5px}
+
+.step-indicator{display:flex;justify-content:center;gap:6px;padding:14px 20px;background:var(--cream2);border-bottom:1px solid #d4c9ae}
+.step-dot{width:8px;height:8px;border-radius:50%;background:#d4c9ae;cursor:pointer}
+.step-dot.active{background:var(--navy);width:24px;border-radius:4px}
+.step-dot.done{background:var(--gold)}
+.step-label{font-size:10px;color:var(--muted);text-align:center;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
+
+.nav-footer{display:flex;border-top:1px solid #d4c9ae}
+.nf-btn{flex:1;padding:10px;background:var(--cream2);color:var(--muted);font-size:9px;letter-spacing:1px;text-align:center;cursor:pointer;border:none;text-transform:uppercase;font-weight:500;border-right:1px solid #d4c9ae}
+.nf-btn:last-child{border-right:none}
+.nf-btn.active,.nf-btn:hover{background:var(--navy);color:var(--gold)}
+
+.screen-title{background:var(--cream2);padding:12px 20px;border-bottom:1px solid #d4c9ae;display:flex;align-items:center;gap:8px}
+.screen-title span{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}
+.screen-title h2{font-family:'Playfair Display',serif;font-size:16px;color:var(--navy)}
+.back-btn{font-size:10px;color:var(--muted);cursor:pointer;margin-right:8px}
+.back-btn:hover{color:var(--terra)}
+
+.account-section{padding:20px}
+.profile-header{display:flex;align-items:center;gap:14px;padding:16px;background:var(--cream);border:1px solid #d4c9ae;margin-bottom:16px}
+.profile-avatar{width:48px;height:48px;background:var(--navy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+.profile-name{font-size:15px;font-weight:500;color:var(--navy)}
+.profile-meta{font-size:11px;color:var(--muted);margin-top:2px}
+.profile-tier{display:inline-block;background:var(--gold);color:var(--navy);font-size:9px;font-weight:500;padding:2px 8px;margin-top:4px;letter-spacing:0.5px}
+.stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px}
+.stat-box{background:var(--cream);border:1px solid #d4c9ae;padding:12px;text-align:center}
+.stat-val{font-family:'Playfair Display',serif;font-size:20px;color:var(--terra);font-weight:700}
+.stat-key{font-size:10px;color:var(--muted);margin-top:2px}
+.order-item{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #e8dfc8}
+.order-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.order-name{font-size:12px;font-weight:500;color:var(--navy)}
+.order-date{font-size:10px;color:var(--muted)}
+.order-price{font-family:'Playfair Display',serif;font-size:14px;color:var(--terra);margin-left:auto}
+.reorder-btn{font-size:9px;color:var(--green);letter-spacing:1px;font-weight:500;cursor:pointer;text-transform:uppercase;margin-left:8px}
+.reorder-btn:hover{color:var(--terra)}
+</style>
+
+<h2 class="sr-only">Veera Foods D2C retention website prototype demonstrating the CRM, loyalty tier, subscription, and replenishment reminder ecosystem</h2>
+
+<div class="vw">
+  <div class="nav">
+    <div>
+      <div class="logo">VEERA<span>Rooted in Ancient Grains</span></div>
+    </div>
+    <div class="nav-links">
+      <a onclick="showScreen('shop')">Shop</a>
+      <a onclick="showScreen('loyalty')">Rewards</a>
+      <a onclick="showScreen('account')">Account</a>
+    </div>
+    <div class="nav-cart" onclick="showScreen('shop')">Cart (2)</div>
+  </div>
+
+  <div class="step-indicator">
+    <div class="step-dot done" onclick="showScreen('home')" title="Home"></div>
+    <div class="step-dot active" id="sd-shop" onclick="showScreen('shop')" title="Shop"></div>
+    <div class="step-dot" id="sd-sub" onclick="showScreen('sub')" title="Subscribe"></div>
+    <div class="step-dot" id="sd-loyalty" onclick="showScreen('loyalty')" title="Loyalty"></div>
+    <div class="step-dot" id="sd-replen" onclick="showScreen('replen')" title="Replenishment"></div>
+    <div class="step-dot" id="sd-account" onclick="showScreen('account')" title="Account"></div>
+  </div>
+  <div style="text-align:center;font-size:9px;color:#9b8c6e;padding:2px 0 8px;letter-spacing:1.5px;text-transform:uppercase;background:var(--cream2);border-bottom:1px solid #d4c9ae" id="screen-hint">← Navigate the D2C retention journey →</div>
+
+  <div class="vh active" id="s-home">
+    <div class="hero">
+      <div class="hero-tag">New drop — Diwali Edition</div>
+      <h1>Ancient Grains.<br><em>Modern Cravings.</em></h1>
+      <p>Clean-label snacks rooted in Indian tradition — Ragi, Millet, and Seeds, the way your grandmother would recognize.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showScreen('shop')">Shop Now</button>
+        <button class="btn-ghost" onclick="showScreen('sub')">Subscribe & Save 15%</button>
+      </div>
+    </div>
+    <div class="trust-bar">
+      <div class="trust-item"><strong>62%</strong>Repeat Rate</div>
+      <div class="trust-item"><strong>NPS 67</strong>Customer Love</div>
+      <div class="trust-item"><strong>7</strong>Ingredients Max</div>
+      <div class="trust-item"><strong>340K+</strong>Community</div>
+    </div>
+    <div style="padding:20px">
+      <div style="text-align:center;margin-bottom:16px">
+        <div class="section-label">The veera ecosystem</div>
+        <div class="section-title">Buy once. Become a member.</div>
+        <div class="section-sub" style="margin-top:4px">Every order earns Veera points. Unlock tiers. Get your replenishment reminders. Join the ritual.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px;cursor:pointer" onclick="showScreen('shop')">
+          <div style="font-size:16px;margin-bottom:6px;color:var(--terra)"><i class="ti ti-shopping-bag" aria-hidden="true"></i></div>
+          <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px">Shop by channel</div>
+          <div style="font-size:10px;color:var(--muted)">D2C bundles, subscription packs, gift boxes</div>
+        </div>
+        <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px;cursor:pointer" onclick="showScreen('loyalty')">
+          <div style="font-size:16px;margin-bottom:6px;color:var(--gold)"><i class="ti ti-star" aria-hidden="true"></i></div>
+          <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px">Loyalty tiers</div>
+          <div style="font-size:10px;color:var(--muted)">Bronze → Silver → Gold. Earn on every order</div>
+        </div>
+        <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px;cursor:pointer" onclick="showScreen('sub')">
+          <div style="font-size:16px;margin-bottom:6px;color:var(--green)"><i class="ti ti-refresh" aria-hidden="true"></i></div>
+          <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px">Monthly ritual box</div>
+          <div style="font-size:10px;color:var(--muted)">₹499/month. Skip or pause anytime</div>
+        </div>
+        <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px;cursor:pointer" onclick="showScreen('replen')">
+          <div style="font-size:16px;margin-bottom:6px;color:var(--navy)"><i class="ti ti-bell" aria-hidden="true"></i></div>
+          <div style="font-size:12px;font-weight:500;color:var(--navy);margin-bottom:3px">Smart reminders</div>
+          <div style="font-size:10px;color:var(--muted)">We know when you're about to run out</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vh" id="s-shop">
+    <div class="screen-title">
+      <span>Shop</span>
+      <h2 style="margin-left:8px">Our products</h2>
+    </div>
+    <div class="products-section">
+      <div class="filter-bar">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Single packs</button>
+        <button class="filter-btn">Combo packs</button>
+        <button class="filter-btn">Subscription</button>
+        <button class="filter-btn">Gift boxes</button>
+      </div>
+      <div style="background:#fff3cd;border:1px solid #c9920a;padding:8px 12px;margin-bottom:14px;font-size:11px;color:#7a5800">
+        <strong>D2C exclusive:</strong> Bundles only available here. Our ₹199+ combo packs are not on Blinkit or Zepto — subscribe for maximum savings.
+      </div>
+      <div class="product-grid">
+        <div class="product-card" onclick="showScreen('sub')">
+          <div class="product-img ragi">
+            <div class="pack-name">RAGI<br>CRUNCH<br>Duo Pack</div>
+            <div class="pack-badge">Best seller</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Ragi Crunch Duo</div>
+            <div class="product-weight">2 × 120g | 5 flavours</div>
+            <div class="product-bottom">
+              <div class="product-price">₹199</div>
+              <button class="add-btn">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showScreen('sub')">
+          <div class="product-img millet">
+            <div class="pack-name">MILLET<br>POPS<br>Trio</div>
+            <div class="pack-badge">New</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Millet Pops Trio</div>
+            <div class="product-weight">3 × 80g | 3 flavours</div>
+            <div class="product-bottom">
+              <div class="product-price">₹249</div>
+              <button class="add-btn">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showScreen('sub')">
+          <div class="product-img seed">
+            <div class="pack-name">SEED<br>TRAIL<br>Fitness Box</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Seed Trail Fitness Box</div>
+            <div class="product-weight">4 × 120g | Mixed</div>
+            <div class="product-bottom">
+              <div class="product-price">₹349</div>
+              <button class="add-btn">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showScreen('sub')">
+          <div class="product-img" style="background:linear-gradient(135deg,#7B2D16 0%,#1D4A2A 50%,#14204A 100%)">
+            <div class="pack-name">ANCIENT<br>GRAINS<br>Variety Box</div>
+            <div class="pack-badge">Save 18%</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Ancient Grains Variety</div>
+            <div class="product-weight">6 packs | All 3 lines</div>
+            <div class="product-bottom">
+              <div class="product-price">₹449</div>
+              <button class="add-btn">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showScreen('sub')">
+          <div class="product-img" style="background:#5D4037">
+            <div class="pack-name">GIFT<br>COLLECTOR<br>Edition</div>
+            <div class="pack-badge">Gift-ready</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Gift Collector Box</div>
+            <div class="product-weight">5 packs + card</div>
+            <div class="product-bottom">
+              <div class="product-price">₹549</div>
+              <button class="add-btn">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card" onclick="showScreen('sub')">
+          <div class="product-img" style="background:#0D1B3E;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px">
+            <div style="color:var(--gold);font-size:10px;letter-spacing:1px;font-weight:500">MONTHLY</div>
+            <div class="pack-name" style="color:var(--gold-light)">RITUAL<br>BOX</div>
+            <div style="color:rgba(255,255,255,0.6);font-size:9px">₹499/month</div>
+          </div>
+          <div class="product-info">
+            <div class="product-name">Monthly Ritual Box</div>
+            <div class="product-weight">Curated monthly | Subscribe</div>
+            <div class="product-bottom">
+              <div class="product-price">₹499</div>
+              <button class="add-btn" onclick="showScreen('sub')">Subscribe</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px;margin-top:16px;text-align:center">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:8px">First order? Use <strong style="color:var(--terra)">VEERA10</strong> for 10% off. Subscribe and save 15% on every box.</div>
+        <button class="btn-gold" onclick="showScreen('sub')" style="font-size:11px;padding:8px 20px">See subscription plans</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="vh" id="s-sub">
+    <div class="screen-title">
+      <span>Subscribe & Save</span>
+      <h2 style="margin-left:8px">Monthly Ritual Box</h2>
+    </div>
+    <div style="padding:20px">
+      <div style="background:var(--navy);padding:18px;margin-bottom:16px">
+        <div style="color:var(--gold);font-size:9px;letter-spacing:2px;font-weight:500;text-transform:uppercase;margin-bottom:6px">Why subscribe?</div>
+        <div style="color:#fff;font-family:'Playfair Display',serif;font-size:15px;margin-bottom:8px">The snack that knows your routine</div>
+        <div style="color:rgba(255,255,255,0.65);font-size:11px;line-height:1.7">Your box ships on the 1st of every month, curated to your purchase history. Our CRM knows your favourites — if you've ordered Ragi Crunch 3 times, it's always in your box.</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+        <div style="background:var(--cream);border:2px solid var(--gold);padding:14px">
+          <div style="font-size:9px;letter-spacing:2px;color:var(--gold);font-weight:500;margin-bottom:6px;text-transform:uppercase">Most popular</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);margin-bottom:4px">Ritual Box</div>
+          <div style="font-size:20px;font-family:'Playfair Display',serif;color:var(--terra);font-weight:700;margin-bottom:6px">₹499<span style="font-size:11px;color:var(--muted);font-family:'DM Sans',sans-serif">/month</span></div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.8">✓ 5-6 packs, curated to you<br>✓ 15% off vs single orders<br>✓ Free shipping always<br>✓ Skip or pause anytime<br>✓ Exclusive member flavours</div>
+          <button class="btn-gold" style="width:100%;margin-top:12px;font-size:10px;padding:8px" onclick="showScreen('loyalty')">Subscribe now</button>
+        </div>
+        <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px">
+          <div style="font-size:9px;letter-spacing:2px;color:var(--muted);font-weight:500;margin-bottom:6px;text-transform:uppercase">Build your box</div>
+          <div style="font-family:'Playfair Display',serif;font-size:16px;color:var(--navy);margin-bottom:4px">Custom Box</div>
+          <div style="font-size:20px;font-family:'Playfair Display',serif;color:var(--terra);font-weight:700;margin-bottom:6px">₹599<span style="font-size:11px;color:var(--muted);font-family:'DM Sans',sans-serif">/month</span></div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.8">✓ Pick your 6 packs<br>✓ Change every month<br>✓ 12% off vs single orders<br>✓ Free shipping always<br>✓ Loyalty points × 2</div>
+          <button class="btn-ghost" style="width:100%;margin-top:12px;font-size:10px;padding:8px;border:1px solid #d4c9ae;color:var(--navy)">Customise box</button>
+        </div>
+      </div>
+      <div style="background:#e8f4ea;border:1px solid #2D5016;padding:12px;font-size:11px;color:#1a3d0a;line-height:1.65">
+        <strong>How the CRM works for you:</strong> After your 2nd order, Veera's system tracks your purchase pattern. By month 3, your box is auto-curated — no need to reorder. You get a WhatsApp reminder 5 days before dispatch with your box contents. One tap to modify, swap, or skip.
+      </div>
+    </div>
+  </div>
+
+  <div class="vh" id="s-loyalty">
+    <div class="screen-title">
+      <span>Rewards</span>
+      <h2 style="margin-left:8px">Veera loyalty tiers</h2>
+    </div>
+    <div class="loyalty-section">
+      <div style="text-align:center;margin-bottom:4px">
+        <div class="section-label">Your current tier</div>
+        <div class="section-title">You're a Gold member</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">4,840 points · ₹2,100 spent lifetime · 7 orders</div>
+      </div>
+      <div style="background:var(--navy);height:6px;border-radius:3px;margin:14px 0">
+        <div style="background:var(--gold);height:6px;border-radius:3px;width:72%"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);text-align:center;margin-bottom:16px">72% to Platinum — ₹800 more to unlock exclusive seasonal drops</div>
+      <div class="tier-grid">
+        <div class="tier-card">
+          <div class="tier-badge badge-bronze">Bronze</div>
+          <div class="tier-name">Grain Starter</div>
+          <div class="tier-spend">₹0 – ₹499 spent</div>
+          <div class="tier-perks">→ 1 pt / ₹10<br>→ Birthday treat<br>→ Early access emails</div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-badge badge-silver">Silver</div>
+          <div class="tier-name">Grain Keeper</div>
+          <div class="tier-spend">₹500 – ₹1,499</div>
+          <div class="tier-perks">→ 1.5 pts / ₹10<br>→ Free shipping<br>→ Exclusive flavours<br>→ Skip fee waived</div>
+        </div>
+        <div class="tier-card active-tier">
+          <div class="tier-badge badge-gold">Gold ★</div>
+          <div class="tier-name">Grain Elder</div>
+          <div class="tier-spend">₹1,500+ spent</div>
+          <div class="tier-perks">→ 2 pts / ₹10<br>→ Free shipping<br>→ Lab Drops access<br>→ Priority support<br>→ Referral bonus</div>
+        </div>
+      </div>
+      <div style="background:var(--navy);padding:16px;margin-top:16px;display:flex;align-items:center;gap:14px">
+        <div>
+          <div style="color:var(--gold);font-size:9px;letter-spacing:2px;font-weight:500;text-transform:uppercase;margin-bottom:4px">This month's Lab Drop</div>
+          <div style="color:#fff;font-size:13px;font-family:'Playfair Display',serif;margin-bottom:4px">Tamarind Ragi Crunch — Gold+ only</div>
+          <div style="color:rgba(255,255,255,0.6);font-size:10px">Drops on the 1st. Gold members get 48-hr early access. Limited to 500 units.</div>
+        </div>
+        <button class="btn-gold" style="flex-shrink:0;font-size:10px;padding:8px 14px" onclick="showScreen('replen')">Reserve</button>
+      </div>
+    </div>
+    <div class="qr-section">
+      <div class="qr-box"><div class="qr-inner"></div></div>
+      <div class="qr-text">
+        <h4>Seen us at Nature's Basket?</h4>
+        <p>Scan the QR on any Veera pack in-store to join the loyalty programme, unlock your first 100 points, and shift to direct ordering at a 15% discount.</p>
+        <div class="badge-chain">QC → D2C conversion mechanism</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vh" id="s-replen">
+    <div class="screen-title">
+      <span>Smart Reminders</span>
+      <h2 style="margin-left:8px">Replenishment system</h2>
+    </div>
+    <div class="replen-section">
+      <div style="font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:4px">Based on your order history, Veera's CRM predicts your next stock-out 5 days in advance and sends a personalised WhatsApp nudge.</div>
+      <div class="replen-card">
+        <div class="replen-header">
+          <div class="replen-avatar">V</div>
+          <div>
+            <div class="replen-from">Veera Foods</div>
+            <div class="replen-time">WhatsApp · 2 days ago · 9:14 AM</div>
+          </div>
+        </div>
+        <div class="replen-msg">
+          Hey <strong>Ria!</strong> 👋 Your <strong>Ragi Crunch Pepper & Chaat Masala</strong> is probably running low — you ordered it 22 days ago and typically reorder every 25 days.<br><br>
+          We've saved your favourite in your cart. <strong>Reorder in 1 tap</strong> and get it delivered by tomorrow morning. As a Gold member, your shipping is free.
+        </div>
+        <div class="replen-cta-row">
+          <button class="replen-btn replen-btn-primary" onclick="showScreen('account')">Reorder now — ₹199</button>
+          <button class="replen-btn replen-btn-secondary">Skip this time</button>
+          <button class="replen-btn replen-btn-secondary">Remind me in 3 days</button>
+        </div>
+      </div>
+      <div class="whatsapp-bubble" style="margin-top:12px">
+        <strong>Hi Ria,</strong> your June Ritual Box ships in 5 days. It includes: Ragi Crunch (×2), Millet Pops Chaat, Seed Trail Jeera. Tap to swap any pack before 11 PM tonight.<br>
+        <div style="text-align:right;font-size:10px;color:rgba(255,255,255,0.5);margin-top:4px">WhatsApp Commerce · Delivered ✓✓</div>
+      </div>
+      <div style="background:var(--cream);border:1px solid #d4c9ae;padding:14px;margin-top:14px">
+        <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:8px">How the replenishment engine works</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.9">
+          <span style="color:var(--terra);font-weight:500">Day 0</span> — Purchase recorded, consumption model initialized<br>
+          <span style="color:var(--terra);font-weight:500">Day ~20</span> — CRM predicts stock-out window (±3 days accuracy after 3 orders)<br>
+          <span style="color:var(--terra);font-weight:500">Day ~22</span> — WhatsApp nudge sent via Shiprocket Engage API<br>
+          <span style="color:var(--terra);font-weight:500">Day ~25</span> — If no action: email + push notification triggered<br>
+          <span style="color:var(--terra);font-weight:500">Day ~28</span> — Final SMS reminder with 5% "come back" discount<br>
+        </div>
+      </div>
+      <div style="background:var(--navy);padding:14px;margin-top:12px;font-size:11px;color:rgba(255,255,255,0.8);line-height:1.7">
+        <span style="color:var(--gold);font-weight:500;text-transform:uppercase;font-size:9px;letter-spacing:1px;display:block;margin-bottom:4px">The retention math</span>
+        62% organic repeat → <strong style="color:var(--gold-light)">70%+ systematic repeat</strong> = ₹3 Cr incremental annual revenue at zero CAC. LTV moves from ₹1,280 → ₹2,240 per customer.
+      </div>
+    </div>
+  </div>
+
+  <div class="vh" id="s-account">
+    <div class="screen-title">
+      <span>My account</span>
+      <h2 style="margin-left:8px">Ria Sharma</h2>
+    </div>
+    <div class="account-section">
+      <div class="profile-header">
+        <div class="profile-avatar">RS</div>
+        <div>
+          <div class="profile-name">Ria Sharma</div>
+          <div class="profile-meta">Member since Oct 2023 · Bengaluru</div>
+          <div class="profile-tier">Gold Member ★</div>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat-box">
+          <div class="stat-val">7</div>
+          <div class="stat-key">Total orders</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">4,840</div>
+          <div class="stat-key">Loyalty points</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val">₹2,100</div>
+          <div class="stat-key">Lifetime spend</div>
+        </div>
+      </div>
+      <div style="background:var(--cream);border:1px solid #d4c9ae;margin-bottom:14px">
+        <div style="padding:10px 14px;border-bottom:1px solid #d4c9ae;display:flex;align-items:center;justify-content:space-between">
+          <div style="font-size:12px;font-weight:500;color:var(--navy)">Active subscription</div>
+          <div style="font-size:10px;background:var(--green);color:#fff;padding:2px 8px;letter-spacing:0.5px">Active</div>
+        </div>
+        <div style="padding:12px 14px">
+          <div style="font-size:13px;font-family:'Playfair Display',serif;color:var(--navy);margin-bottom:4px">Monthly Ritual Box · ₹499/month</div>
+          <div style="font-size:10px;color:var(--muted)">Next box ships June 1, 2026 · 5 packs curated to you</div>
+          <div style="display:flex;gap:8px;margin-top:10px">
+            <button class="replen-btn replen-btn-primary" style="font-size:9px;padding:6px 12px">Edit box</button>
+            <button class="replen-btn replen-btn-secondary" style="font-size:9px;padding:6px 12px">Skip June</button>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #e8dfc8">Recent orders</div>
+      <div class="order-item">
+        <div class="order-dot"></div>
+        <div>
+          <div class="order-name">Ancient Grains Variety Box</div>
+          <div class="order-date">May 3, 2026 · Delivered</div>
+        </div>
+        <div class="order-price">₹449</div>
+        <div class="reorder-btn" onclick="showScreen('shop')">Reorder</div>
+      </div>
+      <div class="order-item">
+        <div class="order-dot" style="background:var(--gold)"></div>
+        <div>
+          <div class="order-name">Ritual Box — April 2026</div>
+          <div class="order-date">Apr 1, 2026 · Subscription</div>
+        </div>
+        <div class="order-price">₹499</div>
+        <div class="reorder-btn" onclick="showScreen('sub')">Renew</div>
+      </div>
+      <div class="order-item">
+        <div class="order-dot" style="background:#9E9E9E"></div>
+        <div>
+          <div class="order-name">Ragi Crunch Duo + Millet Trio</div>
+          <div class="order-date">Mar 8, 2026 · Delivered</div>
+        </div>
+        <div class="order-price">₹348</div>
+        <div class="reorder-btn" onclick="showScreen('shop')">Reorder</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-footer">
+    <button class="nf-btn" onclick="showScreen('home')"><i class="ti ti-home" aria-hidden="true" style="font-size:14px;display:block;margin:0 auto 2px"></i>Home</button>
+    <button class="nf-btn" onclick="showScreen('shop')"><i class="ti ti-shopping-bag" aria-hidden="true" style="font-size:14px;display:block;margin:0 auto 2px"></i>Shop</button>
+    <button class="nf-btn" onclick="showScreen('sub')"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px;display:block;margin:0 auto 2px"></i>Subscribe</button>
+    <button class="nf-btn" onclick="showScreen('loyalty')"><i class="ti ti-star" aria-hidden="true" style="font-size:14px;display:block;margin:0 auto 2px"></i>Rewards</button>
+    <button class="nf-btn" onclick="showScreen('replen')"><i class="ti ti-bell" aria-hidden="true" style="font-size:14px;display:block;margin:0 auto 2px"></i>Reminders</button>
+    <button class="nf-btn" onclick="showScreen('account')"><i class="ti ti-user" aria-hidden="true" style="font-size:14px;display:block;margin:0 auto 2px"></i>Account</button>
+  </div>
+</div>
+
+<script>
+const screens=['home','shop','sub','loyalty','replen','account'];
+const hints={home:'Welcome — tap any section to explore the D2C ecosystem',shop:'Channel-specific bundles — no single packs, AOV target ₹420+',sub:'Subscription engine — 15% savings, CRM-curated monthly box',loyalty:'3-tier loyalty: Bronze → Silver → Gold → Platinum',replen:'Replenishment reminders — WhatsApp + CRM, Day 22 trigger',account:'Customer dashboard — LTV ₹2,240, NPS 67, Gold member'};
+function showScreen(id){
+  screens.forEach(s=>{
+    const el=document.getElementById('s-'+s);
+    if(el)el.classList.toggle('active',s===id);
+    const dot=document.getElementById('sd-'+s);
+    if(dot){dot.classList.remove('active','done');if(s===id)dot.classList.add('active');else dot.classList.add('done');}
+  });
+  const hint=document.getElementById('screen-hint');
+  if(hint)hint.textContent=hints[id]||'';
+  document.querySelectorAll('.nf-btn').forEach((b,i)=>{b.classList.toggle('active',screens[i+1]===id||screens[i]===id)});
+}
+document.querySelectorAll('.filter-btn').forEach(b=>{b.addEventListener('click',function(){document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));this.classList.add('active');})});
+</script>
